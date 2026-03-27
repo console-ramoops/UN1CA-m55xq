@@ -5,4 +5,5 @@
     <dimen name="config_screenBrightnessSettingMinimumFloat">0.011764706</dimen>
     <dimen name="rounded_corner_content_padding">0.0dp</dimen>
     <dimen name="rounded_corner_radius">20.0dp</dimen>
+    <dimen name="physical_power_button_center_screen_location_y">620.0px</dimen>
 </resources>
