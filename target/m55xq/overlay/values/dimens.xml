@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="config_screenBrightnessSettingDefaultFloat">0.4</dimen>
+    <dimen name="config_screenBrightnessSettingMaximumFloat">1.0</dimen>
+    <dimen name="config_screenBrightnessSettingMinimumFloat">0.011764706</dimen>
+    <dimen name="rounded_corner_content_padding">0.0dp</dimen>
+    <dimen name="rounded_corner_radius">20.0dp</dimen>
+</resources>

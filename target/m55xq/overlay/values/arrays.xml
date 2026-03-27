@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="config_aodBrightnessValues">
+        <item>0</item>
+        <item>12</item>
+        <item>32</item>
+        <item>55</item>
+    </integer-array>
+    <integer-array name="config_autoBrightnessLcdBacklightValues">
+        <item>3</item>
+        <item>27</item>
+        <item>45</item>
+        <item>48</item>
+        <item>54</item>
+        <item>69</item>
+        <item>104</item>
+        <item>169</item>
+        <item>213</item>
+        <item>238</item>
+        <item>255</item>
+        <item>510</item>
+    </integer-array>
+    <integer-array name="config_autoBrightnessLevels">
+        <item>20</item>
+        <item>50</item>
+        <item>100</item>
+        <item>200</item>
+        <item>400</item>
+        <item>1000</item>
+        <item>2000</item>
+        <item>3000</item>
+        <item>5000</item>
+        <item>10000</item>
+        <item>15000</item>
+    </integer-array>
+</resources>
