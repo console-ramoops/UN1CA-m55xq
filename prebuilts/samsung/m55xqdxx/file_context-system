@@ -8,3 +8,4 @@
 /system/priv-app/BiometricSetting/BiometricSetting\.apk u:object_r:system_file:s0
 /system/priv-app/SamsungDeviceHealthManagerService u:object_r:system_file:s0
 /system/priv-app/SamsungDeviceHealthManagerService/SamsungDeviceHealthManagerService\.apk u:object_r:system_file:s0
+/system/saiv/image_understanding u:object_r:system_file:s0
