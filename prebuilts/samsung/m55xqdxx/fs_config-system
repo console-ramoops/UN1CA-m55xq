@@ -8,3 +8,4 @@ system/priv-app/BiometricSetting 0 0 755 capabilities=0x0
 system/priv-app/BiometricSetting/BiometricSetting.apk 0 0 644 capabilities=0x0
 system/priv-app/EnvironmentAdaptiveDisplay 0 0 755 capabilities=0x0
 system/priv-app/EnvironmentAdaptiveDisplay/EnvironmentAdaptiveDisplay.apk 0 0 644 capabilities=0x0
+system/saiv/image_understanding 0 0 755 capabilities=0x0
