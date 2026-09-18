@@ -1,97 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="config_Extra_Brightness_Display_Solution_Brightness_Value">
-        <item>1.4</item>
+        <item>1.00</item>
     </string-array>
     <integer-array name="config_HysteresisBrightInputLux">
         <item>0</item>
+        <item>5</item>
         <item>10</item>
         <item>15</item>
         <item>50</item>
         <item>100</item>
-        <item>300</item>
+        <item>200</item>
         <item>500</item>
         <item>1000</item>
         <item>2000</item>
+        <item>2999</item>
         <item>3000</item>
-        <item>4000</item>
+        <item>4999</item>
         <item>5000</item>
-        <item>6000</item>
-        <item>7000</item>
-        <item>8000</item>
-        <item>9000</item>
-        <item>10000</item>
-        <item>20000</item>
+        <item>29999</item>
+        <item>30000</item>
+        <item>39999</item>
         <item>40000</item>
+        <item>49999</item>
         <item>50000</item>
+        <item>99999</item>
+        <item>100000</item>
     </integer-array>
     <integer-array name="config_HysteresisBrightOutputLux">
-        <item>10</item>
-        <item>80</item>
-        <item>120</item>
+        <item>5</item>
+        <item>22</item>
+        <item>65</item>
+        <item>108</item>
+        <item>250</item>
         <item>300</item>
-        <item>400</item>
-        <item>900</item>
-        <item>1300</item>
-        <item>2000</item>
+        <item>600</item>
+        <item>1500</item>
         <item>3000</item>
-        <item>4000</item>
-        <item>5000</item>
         <item>6000</item>
-        <item>7000</item>
-        <item>8000</item>
-        <item>9000</item>
+        <item>6000</item>
+        <item>10000</item>
         <item>10000</item>
         <item>40000</item>
         <item>40000</item>
-        <item>50000</item>
+        <item>60000</item>
+        <item>60000</item>
+        <item>80000</item>
+        <item>80000</item>
+        <item>100000</item>
+        <item>100000</item>
         <item>999999</item>
     </integer-array>
     <integer-array name="config_HysteresisDarkInputLux">
         <item>0</item>
-        <item>5</item>
-        <item>9</item>
-        <item>10</item>
-        <item>25</item>
+        <item>4</item>
+        <item>49</item>
         <item>50</item>
         <item>100</item>
-        <item>300</item>
+        <item>200</item>
         <item>500</item>
         <item>1000</item>
         <item>2000</item>
+        <item>2999</item>
         <item>3000</item>
+        <item>3999</item>
         <item>4000</item>
+        <item>4999</item>
         <item>5000</item>
-        <item>6000</item>
-        <item>7000</item>
-        <item>8000</item>
-        <item>9000</item>
+        <item>9999</item>
         <item>10000</item>
+        <item>19999</item>
         <item>20000</item>
+        <item>29999</item>
+        <item>30000</item>
+        <item>39999</item>
         <item>40000</item>
+        <item>49999</item>
+        <item>50000</item>
     </integer-array>
     <integer-array name="config_HysteresisDarkOutputLux">
         <item>-1</item>
         <item>0</item>
         <item>0</item>
-        <item>3</item>
         <item>5</item>
-        <item>10</item>
-        <item>40</item>
+        <item>6</item>
+        <item>20</item>
         <item>50</item>
-        <item>60</item>
         <item>200</item>
+        <item>400</item>
+        <item>400</item>
+        <item>500</item>
+        <item>500</item>
         <item>600</item>
+        <item>600</item>
+        <item>800</item>
+        <item>800</item>
+        <item>2000</item>
         <item>2000</item>
         <item>3000</item>
+        <item>3000</item>
+        <item>4000</item>
         <item>4000</item>
         <item>5000</item>
-        <item>6000</item>
-        <item>7000</item>
+        <item>5000</item>
         <item>8000</item>
-        <item>9000</item>
-        <item>10000</item>
-        <item>20000</item>
     </integer-array>
     <string-array name="config_Screen_Brightness_Backlight_Value">
         <item>0</item>
