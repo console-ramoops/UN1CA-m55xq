@@ -118,6 +118,9 @@ COPY_TARGET_FIRMWARE()
             EVAL "cp -a \"$FW_DIR/$TARGET_FIRMWARE_PATH/file_context-$f\" \"$WORK_DIR/configs/file_context-$f\"" || exit 1
             EVAL "cp -a \"$FW_DIR/$TARGET_FIRMWARE_PATH/fs_config-$f\" \"$WORK_DIR/configs/fs_config-$f\"" || exit 1
             if [[ "$f" == "vendor" ]]; then
+                [ -e "$WORK_DIR/vendor/lib/\"\"" ] && rm -rf "$WORK_DIR/vendor/lib/\"\""
+                sed -i '/""/d' "$WORK_DIR/configs/fs_config-vendor" 2> /dev/null || true
+                sed -i '/""/d' "$WORK_DIR/configs/file_context-vendor" 2> /dev/null || true
                 LOG_STEP_IN
                 SET_PROP "vendor" "ro.config.ringtone" "$(GET_PROP "$FW_DIR/$SOURCE_FIRMWARE_PATH/vendor/build.prop" "ro.config.ringtone")"
                 SET_PROP "vendor" "ro.config.notification_sound" "$(GET_PROP "$FW_DIR/$SOURCE_FIRMWARE_PATH/vendor/build.prop" "ro.config.notification_sound")"
