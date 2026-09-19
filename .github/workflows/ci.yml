@@ -52,6 +52,8 @@ jobs:
     name: Build
     needs: [shellcheck, generate-matrix]
     runs-on: ubuntu-24.04
+    permissions:
+      contents: write
 
     strategy:
       fail-fast: false
@@ -133,3 +135,64 @@ jobs:
 
       - name: Build ROM
         run: ./scripts/make_rom.sh
+
+      - name: Build flashable zip
+        run: |
+          TARGET_FILES_ZIP="$(find "$OUT_DIR" -maxdepth 1 -name "${{ matrix.target }}_*-target_files.zip" | head -n 1)"
+          if [ -z "$TARGET_FILES_ZIP" ] || [ ! -f "$TARGET_FILES_ZIP" ]; then
+            echo "Error: target-files zip not found in $OUT_DIR" >&2
+            exit 1
+          fi
+          ./scripts/build_flashable_zip.sh "$TARGET_FILES_ZIP"
+
+      - name: Upload flashable zip to GoFile
+        if: github.event_name != 'pull_request'
+        run: |
+          FLASHABLE_ZIP="$(find "$OUT_DIR" -maxdepth 1 -name "UN1CA_*.zip" | head -n 1)"
+          if [ -z "$FLASHABLE_ZIP" ] || [ ! -f "$FLASHABLE_ZIP" ]; then
+            echo "Error: Flashable zip not found in $OUT_DIR" >&2
+            exit 1
+          fi
+          echo "Uploading $(basename "$FLASHABLE_ZIP") to GoFile..."
+          LINK="$(./scripts/upload_gofile.sh "$FLASHABLE_ZIP" | head -n 1)"
+          if [ -z "$LINK" ] || [ "$LINK" = "null" ]; then
+            echo "Error: Failed to obtain GoFile download link!" >&2
+            exit 1
+          fi
+          echo "============================================="
+          echo "GoFile Download Link: $LINK"
+          echo "============================================="
+          SHA256="$(sha256sum "$FLASHABLE_ZIP" | cut -d ' ' -f 1)"
+          MD5="$(md5sum "$FLASHABLE_ZIP" | cut -d ' ' -f 1)"
+          {
+            echo "GOFILE_LINK=$LINK"
+            echo "ZIP_SHA256=$SHA256"
+            echo "ZIP_MD5=$MD5"
+            echo "ZIP_NAME=$(basename "$FLASHABLE_ZIP")"
+          } >> "$GITHUB_ENV"
+          {
+            echo "### UN1CA for ${{ matrix.target }}"
+            echo "- **Download**: [$LINK]($LINK)"
+            echo "- **File**: \`$(basename "$FLASHABLE_ZIP")\`"
+            echo "- **MD5**: \`$MD5\`"
+            echo "- **SHA256**: \`$SHA256\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        if: github.event_name != 'pull_request'
+        with:
+          tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || env.ROM_VERSION }}
+          name: UN1CA ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || env.ROM_VERSION }}
+          body: |
+            ## Download
+            ### ${{ matrix.target }}
+            - [GoFile](${{ env.GOFILE_LINK }})
+
+            ```
+            File:   ${{ env.ZIP_NAME }}
+            MD5:    ${{ env.ZIP_MD5 }}
+            SHA256: ${{ env.ZIP_SHA256 }}
+            ```
+          token: ${{ secrets.PAT_GHP || secrets.GITHUB_TOKEN }}
+
