@@ -121,6 +121,7 @@ EXTRACT_OS_PARTITIONS()
         EVAL "sudo cp -a -T \"$TMP_DIR\" \"$FW_DIR/${MODEL}_${CSC}/$PARTITION\"" || exit 1
         sudo chown -hR "$(whoami):$(whoami)" "$FW_DIR/${MODEL}_${CSC}/$PARTITION"
         [ -d "$FW_DIR/${MODEL}_${CSC}/$PARTITION/lost+found" ] && rm -rf "$FW_DIR/${MODEL}_${CSC}/$PARTITION/lost+found"
+        find "$FW_DIR/${MODEL}_${CSC}/$PARTITION" -name '""' -exec rm -rf {} + 2> /dev/null || true
 
         LOG "- Generating fs_config/file_context for $(basename "$f")..."
 
@@ -138,6 +139,8 @@ EXTRACT_OS_PARTITIONS()
         fi
         sed -i -e "s|\.|\\\.|g" -e "s|\+|\\\+|g" -e "s|\[|\\\[|g" \
             -e "s|\]|\\\]|g" -e "s|\*|\\\*|g" "$FW_DIR/${MODEL}_${CSC}/file_context-$PARTITION"
+        sed -i '/""/d' "$FW_DIR/${MODEL}_${CSC}/fs_config-$PARTITION" 2> /dev/null || true
+        sed -i '/""/d' "$FW_DIR/${MODEL}_${CSC}/file_context-$PARTITION" 2> /dev/null || true
 
         # TODO a way to determine file capabilities has yet to be found, for now let's set it for the only known files
         if [ -f "$FW_DIR/${MODEL}_${CSC}/fs_config-system" ]; then

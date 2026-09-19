@@ -31,6 +31,11 @@ BUILD_IMAGE_MKFS()
         MANUAL_SPARSE=true
     fi
 
+    # Avoid build failures if invalid directory name like '""' exists in input dir or configs
+    find "$INPUT_DIR" -name '""' -exec rm -rf {} + 2> /dev/null || true
+    sed -i '/""/d' "$FS_CONFIG_FILE" 2> /dev/null || true
+    sed -i '/""/d' "$FILE_CONTEXT_FILE" 2> /dev/null || true
+
     local BUILD_CMD
 
     case "$FS_TYPE" in
